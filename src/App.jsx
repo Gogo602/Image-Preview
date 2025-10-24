@@ -138,10 +138,10 @@ export default function App (){
                           {/* Delete*/}
                           <button 
                             onClick={() => deleteHandler(imageObject)}
-                            className="absolute top-1 right-1 text-white bg-black bg-opacity-50 hover:bg-opacity-75 transition-all rounded-full p-1"
+                            className="absolute top-1 right-1 text-white bg-black bg-opacity-50 hover:bg-opacity-75 transition-all rounded-full p-1 cursor-pointer"
                             title="Delete Image"
                           >
-                            <AiOutlineCloseCircle size={30} />
+                            <AiOutlineCloseCircle size={30} className="text-blue-500"/>
                           </button>
                       </div>
                   ))}
