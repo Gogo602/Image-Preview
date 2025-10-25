@@ -12,6 +12,7 @@ export default function App() {
     onSelectFile,
     deleteHandler,
     handleUpload,
+    isUploading,
   } = useImageUpload(MAX_IMAGES);
 
   return (
@@ -28,9 +29,9 @@ export default function App() {
             acceptedFormats={acceptedFormats}
           />
           <UploadButton
-            title="Submit for Verification"
             isVisible={selectedImages.length > 0}
             onClick={handleUpload}
+            isUploading={isUploading} 
           />
         </div>
 

@@ -9,6 +9,7 @@ const revokeUrls = (imageObjects) => {
 export default function useImageUpload(MAX_IMAGES) {
   const [selectedImages, setSelectedImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   const onSelectFile = (event) => {
     const newFilesArray = Array.from(event.target.files);
@@ -17,7 +18,9 @@ export default function useImageUpload(MAX_IMAGES) {
     const remainingSlots = MAX_IMAGES - selectedImages.length;
 
     if (remainingSlots <= 0) {
-      setErrorMessage(`Error: You've reached the maximum of ${MAX_IMAGES} images.`);
+      setErrorMessage(
+        `Error: You've reached the maximum of ${MAX_IMAGES} images.`
+      );
       event.target.value = "";
       return;
     }
@@ -45,15 +48,21 @@ export default function useImageUpload(MAX_IMAGES) {
   };
 
   const handleUpload = () => {
-    const filesToUpload = selectedImages.map((item) => item.file);
+    setIsUploading(true); 
 
+    const filesToUpload = selectedImages.map((item) => item.file);
     console.log(`Ready to upload ${filesToUpload.length} files:`, filesToUpload);
 
-    toast.success(`Successfully logged ${filesToUpload.length} file(s) for verification.`);
-
-    revokeUrls(selectedImages);
-    setSelectedImages([]);
-    setErrorMessage(null);
+    //  2-second upload time
+    setTimeout(() => {
+      toast.success(
+        `Successfully logged ${filesToUpload.length} file(s) for verification.`
+      );
+      revokeUrls(selectedImages);
+      setSelectedImages([]);
+      setErrorMessage(null);
+      setIsUploading(false); 
+    }, 2000); 
   };
 
   return {
@@ -62,5 +71,6 @@ export default function useImageUpload(MAX_IMAGES) {
     onSelectFile,
     deleteHandler,
     handleUpload,
+    isUploading, 
   };
-};
+}
