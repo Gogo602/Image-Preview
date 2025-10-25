@@ -15,7 +15,7 @@ export default function App() {
   } = useImageUpload(MAX_IMAGES);
 
   return (
-    <section className="flex items-center justify-center py-10 bg-gray-600 min-h-[90vh] w-full">
+    <section className="flex items-center justify-center py-10 bg-gray-600 min-h-[95vh] w-full">
       <div className="w-full px-2 sm:px-5 space-y-5 ">
         <h2 className="text-2xl font-extrabold text-white mb-8 text-center">
           Product Verification ({selectedImages.length}/{MAX_IMAGES})
